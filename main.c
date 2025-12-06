@@ -3,25 +3,19 @@
 #include <windows.h>
 #include "dirent.h"
 #include <unistd.h>
-// #include <conio.h>
 
 // ====================== FUNCTION HEADERS ======================
 
-// لیست کردن فایل‌ها و فولدرها
 void list_files(const char *path);
 
-// ساخت فولدر
 void create_folder(const char *path);
 
 void create_file(const char *path);
 
-// حذف فایل یا فولدر
 void delete_file_or_folder(const char *path);
 
-// تغییر نام فایل یا فولدر
 void rename_file_or_folder(const char *old_path, const char *new_path);
 
-// پاک کردن صفحه
 void clear_screen();
 
 void flush_input() {
@@ -106,7 +100,7 @@ int main() {
         }
 
         printf("\nPress Enter to continue...");
-        getchar(); // برای توقف قبل از clear
+        getchar();
     }
 
     return 0;
@@ -115,7 +109,6 @@ int main() {
 // ====================== FUNCTION BODIES (EMPTY) ======================
 
 void list_files(const char *path) {
-    // TODO: خودت پرش کن
     struct dirent *de;
     DIR *dr = opendir(path);
 
@@ -143,17 +136,16 @@ void create_folder(const char *path) {
 }
 
 void create_file(const char *path) {
-    FILE *fptr = fopen(path, "w"); // "w" برای ساخت فایل جدید
+    FILE *fptr = fopen(path, "w");
     if (fptr != NULL) {
         printf("File created successfully!\n");
-        fclose(fptr); // حتما فایل را ببند
+        fclose(fptr);
     } else {
         perror("Could not create file");
     }
 }
 
 void delete_file_or_folder(const char *path) {
-    // TODO
     if (remove(path) == 0) {
         printf("removed successfully");
     }
@@ -166,7 +158,6 @@ void delete_file_or_folder(const char *path) {
 }
 
 void rename_file_or_folder(const char *old_path, const char *new_path) {
-    // TODO
     if (rename(old_path,new_path) == 0) {
         printf("renamed");
     } else{
@@ -177,3 +168,4 @@ void rename_file_or_folder(const char *old_path, const char *new_path) {
 void clear_screen() {
     system("cls");
 }
+
